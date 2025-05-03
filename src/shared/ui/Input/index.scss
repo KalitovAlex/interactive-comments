@@ -1,0 +1,28 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.input {
+  border: 1.5px solid var(--color-grey-500);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  background: transparent;
+  min-width: 300px;
+  min-height: 30px;
+  &:focus {
+    border: 1.5px solid var(--color-grey-100);
+    transition: border 0.3s ease;
+    outline: none;
+  }
+  &:hover {
+    border: 1.5px solid var(--color-grey-100);
+    transition: border 0.3s ease;
+  }
+}

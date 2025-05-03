@@ -1,0 +1,14 @@
+@use './variables.scss';
+
+:root {
+  font-family: 'Pixelify Sans', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.pixelify-sans-regular {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
