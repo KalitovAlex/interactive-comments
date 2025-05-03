@@ -37,8 +37,17 @@
   }
   &__body {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
+    font-weight: 400;
+
+    &-replying-to {
+      &-username {
+        color: var(--color-purple-600);
+        font-weight: 600;
+        margin-left: 0.5rem;
+      }
+    }
   }
   &__replies {
     display: flex;

@@ -8,6 +8,7 @@ export interface Comment {
   score?: number;
   user?: string;
   replies?: Comment[];
+  replyingTo?: string;
 }
 
 export type CommentsResponse = Response<Comment[]>;

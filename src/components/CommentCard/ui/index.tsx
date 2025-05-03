@@ -39,7 +39,17 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
           </div>
         </div>
         <div className="comment-card__body">
-          <p>{comment.content}</p>
+          <p>
+            {comment.replyingTo && (
+              <p className="comment-card__body-replying-to">
+                Replying to
+                <span className="comment-card__body-replying-to-username">
+                  {comment.replyingTo}
+                </span>
+              </p>
+            )}
+            {comment.content}
+          </p>
         </div>
       </div>
       <div className="comment-card__replies">
