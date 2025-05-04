@@ -1,29 +1,18 @@
 import { api } from '../../../shared/api';
+import { REPLIES } from '../../../shared/constants/tags';
 import { Reply, ReplyPayload } from '../model';
 
 export const repliesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     createReply: builder.mutation<Reply, ReplyPayload>({
-      query: (reply) => ({
-        url: '/replies',
+      query: ({ commentId, content }) => ({
+        url: `/comments/${commentId}/replies`,
         method: 'POST',
-        body: reply,
+        body: { content },
       }),
-    }),
-    updateReply: builder.mutation<Reply, { replyId: number; reply: Reply }>({
-      query: ({ replyId, reply }) => ({
-        url: `/replies/${replyId}`,
-        method: 'PATCH',
-        body: reply,
-      }),
-    }),
-    deleteReply: builder.mutation<Reply, { replyId: number }>({
-      query: ({ replyId }) => ({
-        url: `/replies/${replyId}`,
-        method: 'DELETE',
-      }),
+      invalidatesTags: [REPLIES],
     }),
   }),
 });
-export const { useCreateReplyMutation, useUpdateReplyMutation, useDeleteReplyMutation } =
-  repliesApi;
+
+export const { useCreateReplyMutation } = repliesApi;

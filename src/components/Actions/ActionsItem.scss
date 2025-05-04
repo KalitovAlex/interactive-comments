@@ -1,0 +1,23 @@
+.actions-item {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__text {
+    color: var(--color-grey-500);
+    &:hover {
+      color: var(--color-grey-800);
+    }
+    &.red {
+      color: var(--color-pink-400);
+    }
+    &.purple {
+      color: var(--color-purple-600);
+    }
+  }
+}
