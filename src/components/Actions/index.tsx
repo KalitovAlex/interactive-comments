@@ -1,6 +1,9 @@
-import { Pencil, Trash } from 'lucide-react';
+import { Pencil, Trash, X } from 'lucide-react';
+import { useState } from 'react';
+import { Modal } from '../../shared/ui/Modal';
 import { ActionsItem } from './ActionsItem';
 import './index.scss';
+import { Button } from '../../shared/ui/Button';
 
 interface ActionsProps {
   onDelete: () => void;
@@ -8,12 +11,14 @@ interface ActionsProps {
 }
 
 export const Actions = ({ onDelete, onEdit }: ActionsProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="actions">
       <ActionsItem
         text="Delete"
         icon={<Trash style={{ color: 'var(--color-pink-400)' }} />}
-        onClick={onDelete}
+        onClick={() => setIsModalOpen(true)}
         color="red"
       />
       <ActionsItem
@@ -22,6 +27,19 @@ export const Actions = ({ onDelete, onEdit }: ActionsProps) => {
         onClick={onEdit}
         color="purple"
       />
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <div className="actions__modal">
+          <div className="actions__modal__header">
+            <h2 className="actions__modal__title">You really want to delete this comment?</h2>
+            <X onClick={() => setIsModalOpen(false)} />
+          </div>
+
+          <div className="actions__modal__buttons">
+            <Button buttonText="Cancel" onClick={() => setIsModalOpen(false)} />
+            <Button variant="primary" buttonText="Delete" onClick={onDelete} />
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };
