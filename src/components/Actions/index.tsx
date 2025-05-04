@@ -4,6 +4,9 @@ import { Modal } from '../../shared/ui/Modal';
 import { ActionsItem } from './ActionsItem';
 import './index.scss';
 import { Button } from '../../shared/ui/Button';
+import { useDispatch } from 'react-redux';
+import { api } from '../../shared/api';
+import { COMMENTS } from '../../shared/constants/tags';
 
 interface ActionsProps {
   onDelete: () => void;
@@ -13,6 +16,7 @@ interface ActionsProps {
 
 export const Actions = ({ onDelete, onEdit, isLoading }: ActionsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <div className="actions">
@@ -40,7 +44,11 @@ export const Actions = ({ onDelete, onEdit, isLoading }: ActionsProps) => {
             <Button
               variant="primary"
               buttonText="Delete"
-              onClick={onDelete}
+              onClick={() => {
+                onDelete();
+                setIsModalOpen(false);
+                dispatch(api.util.invalidateTags([COMMENTS]));
+              }}
               isLoading={isLoading}
             />
           </div>
