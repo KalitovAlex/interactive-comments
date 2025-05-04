@@ -1,12 +1,13 @@
 import { Comment } from '../../../features/Comments/model';
 import { Avatar } from '../../../shared/ui/Avatar';
-import { Button } from '../../../shared/ui/Button';
 import { formatDate } from '../../../shared/utils/formatDate';
 import './index.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../shared/store';
 import { Reply } from 'lucide-react';
 import { setRepliedComment } from '../../../features/Comments/model/slice';
+import { Badge } from '../../../shared/ui/Badge';
+import { Actions } from '../../Actions';
 
 export interface CommentCardProps {
   comment: Comment;
@@ -20,6 +21,14 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
     dispatch(setRepliedComment(comment));
   };
 
+  const handleDelete = () => {
+    console.log('delete');
+  };
+
+  const handleEdit = () => {
+    console.log('edit');
+  };
+
   return (
     <div className="comment-card-wrapper">
       <div className="comment-card">
@@ -27,14 +36,16 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
           <div className="comment-card__header-info">
             <Avatar name={comment.user ?? ''} size="card" />
             <h2>{comment.user}</h2>
+            {isOwner && (
+              <>
+                <Badge text="You" />
+              </>
+            )}
             <p>{formatDate(comment.createdAt)}</p>
           </div>
           <div className="comment-card__header-actions">
             {isOwner ? (
-              <>
-                <Button buttonText="Edit" onClick={() => {}} />
-                <Button buttonText="Delete" onClick={() => {}} />
-              </>
+              <Actions onDelete={handleDelete} onEdit={handleEdit} />
             ) : (
               <div className="comment-card__header-actions-reply" onClick={handleReply}>
                 <Reply />
