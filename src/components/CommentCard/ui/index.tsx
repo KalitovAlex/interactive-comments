@@ -3,17 +3,22 @@ import { Avatar } from '../../../shared/ui/Avatar';
 import { Button } from '../../../shared/ui/Button';
 import { formatDate } from '../../../shared/utils/formatDate';
 import './index.scss';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../shared/store';
 import { Reply } from 'lucide-react';
+import { setRepliedComment } from '../../../features/Comments/model/slice';
 
 export interface CommentCardProps {
   comment: Comment;
 }
 export const CommentCard = ({ comment }: CommentCardProps) => {
-  console.log(comment);
   const user = useSelector((state: RootState) => state.user);
   const isOwner = user.user?.username === comment.user;
+  const dispatch = useDispatch();
+
+  const handleReply = () => {
+    dispatch(setRepliedComment(comment));
+  };
 
   return (
     <div className="comment-card-wrapper">
@@ -31,7 +36,7 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
                 <Button buttonText="Delete" onClick={() => {}} />
               </>
             ) : (
-              <div className="comment-card__header-actions-reply">
+              <div className="comment-card__header-actions-reply" onClick={handleReply}>
                 <Reply />
                 <p>Reply</p>
               </div>
