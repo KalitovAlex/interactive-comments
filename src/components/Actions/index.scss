@@ -16,6 +16,11 @@
     &__close {
       cursor: pointer;
     }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     &__title {
       font-size: 1.5rem;
       font-weight: 600;

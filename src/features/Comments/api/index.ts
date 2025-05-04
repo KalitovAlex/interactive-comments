@@ -17,25 +17,7 @@ export const commentsApi = api.injectEndpoints({
       }),
       invalidatesTags: [COMMENTS],
     }),
-    updateComment: builder.mutation<Comment, { commentId: number; comment: Comment }>({
-      query: ({ commentId, comment }) => ({
-        url: `/comments/${commentId}`,
-        method: 'PATCH',
-        body: comment,
-      }),
-    }),
-    deleteComment: builder.mutation<Comment, { commentId: number }>({
-      query: ({ commentId }) => ({
-        url: `/comments/${commentId}`,
-        method: 'DELETE',
-      }),
-    }),
   }),
 });
 
-export const {
-  useGetCommentsQuery,
-  useCreateCommentMutation,
-  useUpdateCommentMutation,
-  useDeleteCommentMutation,
-} = commentsApi;
+export const { useGetCommentsQuery, useCreateCommentMutation } = commentsApi;

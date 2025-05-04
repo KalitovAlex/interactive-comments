@@ -8,7 +8,7 @@ import { Reply } from 'lucide-react';
 import { setRepliedComment } from '../../../features/Comments/model/slice';
 import { Badge } from '../../../shared/ui/Badge';
 import { Actions } from '../../Actions';
-import { useDeleteCommentMutation } from '../../../features/Comments/api';
+import { useDeleteContentMutation } from '../../../features/Content/api';
 
 export interface CommentCardProps {
   comment: Comment;
@@ -17,14 +17,14 @@ export const CommentCard = ({ comment }: CommentCardProps) => {
   const user = useSelector((state: RootState) => state.user);
   const isOwner = user.user?.username === comment.user;
   const dispatch = useDispatch();
-  const [deleteComment, { isLoading }] = useDeleteCommentMutation();
+  const [deleteContent, { isLoading }] = useDeleteContentMutation();
 
   const handleReply = () => {
     dispatch(setRepliedComment(comment));
   };
 
   const handleDelete = () => {
-    deleteComment({ commentId: comment.id });
+    deleteContent({ contentId: comment.id });
   };
 
   const handleEdit = () => {

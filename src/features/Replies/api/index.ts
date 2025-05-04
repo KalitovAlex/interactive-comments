@@ -12,23 +12,7 @@ export const repliesApi = api.injectEndpoints({
       }),
       invalidatesTags: [REPLIES],
     }),
-    updateReply: builder.mutation<Reply, { replyId: number; reply: Reply }>({
-      query: ({ replyId, reply }) => ({
-        url: `/replies/${replyId}`,
-        method: 'PATCH',
-        body: reply,
-      }),
-      invalidatesTags: [REPLIES],
-    }),
-    deleteReply: builder.mutation<Reply, { replyId: number }>({
-      query: ({ replyId }) => ({
-        url: `/replies/${replyId}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: [REPLIES],
-    }),
   }),
 });
 
-export const { useCreateReplyMutation, useUpdateReplyMutation, useDeleteReplyMutation } =
-  repliesApi;
+export const { useCreateReplyMutation } = repliesApi;
