@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+import { REPLIES, COMMENTS } from '../constants/tags';
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: import.meta.env.VITE_API,
@@ -12,4 +12,5 @@ export const api = createApi({
     },
   }),
   endpoints: () => ({}),
+  tagTypes: [COMMENTS, REPLIES],
 });

@@ -14,5 +14,5 @@ export type RepliesResponse = Response<Reply[]>;
 
 export interface ReplyPayload {
   content: string;
-  replyingTo: string;
+  commentId: number;
 }
