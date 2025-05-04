@@ -13,6 +13,9 @@
       gap: 1rem;
       justify-content: space-between;
     }
+    &__close {
+      cursor: pointer;
+    }
     &__title {
       font-size: 1.5rem;
       font-weight: 600;

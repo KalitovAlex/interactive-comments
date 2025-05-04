@@ -8,9 +8,10 @@ import { Button } from '../../shared/ui/Button';
 interface ActionsProps {
   onDelete: () => void;
   onEdit: () => void;
+  isLoading?: boolean;
 }
 
-export const Actions = ({ onDelete, onEdit }: ActionsProps) => {
+export const Actions = ({ onDelete, onEdit, isLoading }: ActionsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -31,12 +32,17 @@ export const Actions = ({ onDelete, onEdit }: ActionsProps) => {
         <div className="actions__modal">
           <div className="actions__modal__header">
             <h2 className="actions__modal__title">You really want to delete this comment?</h2>
-            <X onClick={() => setIsModalOpen(false)} />
+            <X className="actions__modal__close" onClick={() => setIsModalOpen(false)} />
           </div>
 
           <div className="actions__modal__buttons">
             <Button buttonText="Cancel" onClick={() => setIsModalOpen(false)} />
-            <Button variant="primary" buttonText="Delete" onClick={onDelete} />
+            <Button
+              variant="primary"
+              buttonText="Delete"
+              onClick={onDelete}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </Modal>
